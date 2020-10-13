@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双色球 - 必中一等奖魔幻页！</title>
+
+    <style>
+        .ssq span{ display: inline-block; margin: 10px;}
+        .redBall{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: red;
+            color: #FFF;
+            text-align: center;
+            line-height: 40px;
+        }
+        .blueBall{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: blue;
+            color: #FFF;
+            text-align: center;
+            line-height: 40px;
+        }
+        .winningButton{ margin: 20px;}
+    </style>
+</head>
+<body>
+    <div class="ssq"></div>
+    <button class="winningButton">随机去中一等奖！</button>
+    <!-- <span class="redBall">1</span> -->
+    <script>
+        function winningFn(){
+            let arr = [];
+            let blueBall = Math.ceil(Math.random()*16);
+            let ssqHtml = '';
+
+            while(arr.length < 6){
+                let rndNum = Math.ceil(Math.random()*33);
+
+                let bool = arr.indexOf(rndNum);
+
+                if(bool == -1){
+                    arr.push(rndNum);
+                }
+            }
+
+            let sortArr= arr.sort(function(n1,n2){return n1-n2});
+            sortArr.forEach(function(item){
+                ssqHtml+=`<span class="redBall">${item}</span>`;
+            })
+
+            ssqHtml+=`<span class="blueBall">${blueBall}</span>`;
+
+            document.querySelector('.ssq').innerHTML = ssqHtml;
+        }
+
+        // console.log(arr)
+
+        winningFn();
+        document.querySelector('.winningButton').onclick = winningFn;
+    </script>
+</body>
+</html>
