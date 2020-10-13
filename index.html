@@ -26,7 +26,7 @@
             text-align: center;
             line-height: 40px;
         }
-        .winningButton{ margin: 20px;}
+        .winningButton{ margin: 20px; position:absolute; top: 20px; left: 500px;}
     </style>
 </head>
 <body>
@@ -34,7 +34,9 @@
     <button class="winningButton">随机去中一等奖！</button>
     <!-- <span class="redBall">1</span> -->
     <script>
+        let n = 0;
         function winningFn(){
+            n++;
             let arr = [];
             let blueBall = Math.ceil(Math.random()*16);
             let ssqHtml = '';
@@ -56,7 +58,7 @@
 
             ssqHtml+=`<span class="blueBall">${blueBall}</span>`;
 
-            document.querySelector('.ssq').innerHTML = ssqHtml;
+            document.querySelector('.ssq').innerHTML +='第'+n+'注'+ssqHtml+'<br/>';
         }
 
         // console.log(arr)
