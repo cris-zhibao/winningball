@@ -29,23 +29,29 @@
             text-align: center;
             line-height: 40px;
         }
-        .winningButton{ position:absolute; top: 10px; left: 100px;}
+        .btnBox{ position:absolute; top: 10px; left: 100px;}
+        .tit { display: inline-block; width: 80px; text-align: right;}
     </style>
 </head>
 <body>
     <div class="ssq"></div>
-    <button class="winningButton">随机去中一等奖！</button>
+    <div class="btnBox">
+        <button class="winningButton">双色球</button>
+        <button class="winningButton2">大乐透</button>
+        <button class="winningButton3">11选5</button>
+        <button class="winningButton4">快3</button>
+    </div>
     <!-- <span class="redBall">1</span> -->
     <script>
         let n = 0;
-        function winningFn(){
+        function winningFn(endNum,len,col){
             n++;
             let arr = [];
-            let blueBall = Math.ceil(Math.random()*16);
+            // let blueBall = Math.ceil(Math.random()*16);
             let ssqHtml = '';
 
-            while(arr.length < 6){
-                let rndNum = Math.ceil(Math.random()*33);
+            while(arr.length < len){
+                let rndNum = Math.ceil(Math.random()*endNum);
 
                 let bool = arr.indexOf(rndNum);
 
@@ -56,18 +62,42 @@
 
             let sortArr= arr.sort(function(n1,n2){return n1-n2});
             sortArr.forEach(function(item){
-                ssqHtml+=`<span class="redBall">${item}</span>`;
+                ssqHtml+=`<span class="${col}">${item}</span>`;
             })
 
-            ssqHtml+=`<span class="blueBall">${blueBall}</span>`;
-
-            document.querySelector('.ssq').innerHTML +='第'+n+'注'+ssqHtml+'<br/>';
+            // ssqHtml+=`<span class="blueBall">${blueBall}</span>`;
+            document.querySelector('.ssq').innerHTML += ssqHtml;
         }
 
-        // console.log(arr)
+        // 双色球
+        document.querySelector('.winningButton').onclick = function(){
+            document.querySelector('.ssq').innerHTML +='<span class="tit">双色球：</span>';
+            winningFn(33,6,'redBall');
+            winningFn(16,1,'blueBall');
+            document.querySelector('.ssq').innerHTML +='<br/>'; 
+        };
 
-        winningFn();
-        document.querySelector('.winningButton').onclick = winningFn;
+        // 大乐透
+        document.querySelector('.winningButton2').onclick = function(){
+            document.querySelector('.ssq').innerHTML +='<span class="tit">大乐透：</span>';
+            winningFn(35,5,'redBall');
+            winningFn(12,2,'blueBall');
+            document.querySelector('.ssq').innerHTML +='<br/>'; 
+        }
+
+        // 11选5
+        document.querySelector('.winningButton3').onclick = function(){
+            document.querySelector('.ssq').innerHTML +='<span class="tit">11选5：</span>';
+            winningFn(11,5,'redBall');
+            document.querySelector('.ssq').innerHTML +='<br/>'; 
+        }
+
+        // 快3
+        document.querySelector('.winningButton4').onclick = function(){
+            document.querySelector('.ssq').innerHTML +='<span class="tit">快3：</span>';
+            winningFn(6,3,'blueBall');
+            document.querySelector('.ssq').innerHTML +='<br/>'; 
+        }
     </script>
 </body>
 </html>
