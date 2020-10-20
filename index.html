@@ -107,7 +107,8 @@
             console.log(this.value);
             document.querySelector('.ssq').innerHTML +='<span class="tit">11选'+this.value+'：</span>';
             winningFn(11,this.value,'redBall');
-            document.querySelector('.ssq').innerHTML +='<br/>'; 
+            document.querySelector('.ssq').innerHTML +='<br/>';
+            this.value = 0;
         }
 
         // 快3
