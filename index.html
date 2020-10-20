@@ -43,6 +43,12 @@
         <button class="winningButton">双色球</button>
         <button class="winningButton2">大乐透</button>
         <button class="winningButton3">11选5</button>
+        <select name="" id="c5">
+            <option value="0" selected>请选择</option>
+            <option value="3">11选3</option>
+            <option value="4">11选4</option>
+            <option value="6">11选6</option>
+        </select>
         <button class="winningButton4">快3</button>
     </div>
     <!-- <span class="redBall">1</span> -->
@@ -93,6 +99,14 @@
         document.querySelector('.winningButton3').onclick = function(){
             document.querySelector('.ssq').innerHTML +='<span class="tit">11选5：</span>';
             winningFn(11,5,'redBall');
+            document.querySelector('.ssq').innerHTML +='<br/>'; 
+        }
+
+        // 任意选择
+        document.querySelector('#c5').onchange=function(){
+            console.log(this.value);
+            document.querySelector('.ssq').innerHTML +='<span class="tit">11选'+this.value+'：</span>';
+            winningFn(11,this.value,'redBall');
             document.querySelector('.ssq').innerHTML +='<br/>'; 
         }
 
